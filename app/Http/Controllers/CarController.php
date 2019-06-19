@@ -24,8 +24,16 @@ class CarController extends Controller
 			'trims' => $trims,
         ]);
 	}
-	public function getYears(Request $request) {
+	public function getYears($request) {
 		$years = \DB::table('Cars')->distinct()->select('Year')->orderBy('Year', 'ASC')->get();
         return response()->json($years);
+	}
+	public function getMakers($request) {
+		$makers = \DB::table('Cars')->distinct()->select('Make')->where('Year', $request)->orderBy('Make', 'ASC')->get();
+        return response()->json($makers);
+	}
+	public function getModels($request, $request2) {
+		$models = \DB::table('Cars')->distinct()->select('Model')->where('Year', $request)->where('Make', $request2)->orderBy('Model', 'ASC')->get();
+        return response()->json($models);
 	}
 }

@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/years', 'CarController@getYears');
+Route::get('/makers/{year}', 'CarController@getMakers');
+Route::get('/makers/{year}/{model}', 'CarController@getModels');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
