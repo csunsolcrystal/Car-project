@@ -36,4 +36,13 @@ class CarController extends Controller
 		$models = \DB::table('Cars')->distinct()->select('Model')->where('Year', $request)->where('Make', $request2)->orderBy('Model', 'ASC')->get();
         return response()->json($models);
 	}
+	public function getTrims($request, $request2, $request3) {
+		$models = \DB::table('Cars')->distinct()->select('Trim')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->orderBy('Trim', 'ASC')->get();
+        return response()->json($models);
+	}
+
+	//TODO: Dont know if i need a seperate function for it
+	public function findCar() {
+
+	}
 }

@@ -1713,6 +1713,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['initialYears'],
   data: function data() {
@@ -1720,9 +1724,11 @@ __webpack_require__.r(__webpack_exports__);
       years: _.cloneDeep(this.initialYears),
       year: '',
       makers: '',
-      make: '',
+      maker: '',
       models: '',
-      model: ''
+      model: '',
+      trims: '',
+      trim: ''
     };
   },
   methods: {
@@ -1733,6 +1739,7 @@ __webpack_require__.r(__webpack_exports__);
         years: this.years
       }).then(function (res) {
         _this.years = res.data;
+        _this.makers = 0;
       });
     },
     getMakers: function getMakers() {
@@ -1751,6 +1758,15 @@ __webpack_require__.r(__webpack_exports__);
         models: this.models
       }).then(function (res) {
         _this3.models = res.data;
+      });
+    },
+    getTrims: function getTrims() {
+      var _this4 = this;
+
+      axios.get('/api/makers/' + this.year + '/' + this.maker + '/' + this.model, {
+        trims: this.trims
+      }).then(function (res) {
+        _this4.trims = res.data;
       });
     }
   }
@@ -37129,9 +37145,9 @@ var render = function() {
       [
         _c("option", { attrs: { selected: "" } }, [_vm._v("Select Maker")]),
         _vm._v(" "),
-        _vm._l(_vm.makers, function(make) {
-          return _c("option", { domProps: { value: make.Make } }, [
-            _vm._v(_vm._s(make.Make))
+        _vm._l(_vm.makers, function(maker) {
+          return _c("option", { domProps: { value: maker.Make } }, [
+            _vm._v(_vm._s(maker.Make))
           ])
         })
       ],
@@ -37166,7 +37182,7 @@ var render = function() {
                 : $$selectedVal[0]
             },
             function($event) {
-              return _vm.getModels()
+              return _vm.getTrims()
             }
           ]
         }
@@ -37177,6 +37193,51 @@ var render = function() {
         _vm._l(_vm.models, function(model) {
           return _c("option", { domProps: { value: model.Model } }, [
             _vm._v(_vm._s(model.Model))
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "select",
+      {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.trim,
+            expression: "trim"
+          }
+        ],
+        staticClass: "browser-default custom-select",
+        on: {
+          change: [
+            function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.trim = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            },
+            function($event) {
+              return _vm.getTrims()
+            }
+          ]
+        }
+      },
+      [
+        _c("option", { attrs: { selected: "" } }, [_vm._v("Select Trim")]),
+        _vm._v(" "),
+        _vm._l(_vm.trims, function(trim) {
+          return _c("option", { domProps: { value: trim.Trim } }, [
+            _vm._v(_vm._s(trim.Trim))
           ])
         })
       ],
@@ -49427,15 +49488,14 @@ if (token) {
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
 /* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -49465,7 +49525,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
