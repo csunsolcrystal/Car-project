@@ -1717,6 +1717,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['initialYears'],
   data: function data() {
@@ -37076,186 +37090,206 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-group" }, [
-    _c(
-      "select",
-      {
-        directives: [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h2", {}, [_vm._v("Year")]),
+        _vm._v(" "),
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.year,
-            expression: "year"
-          }
-        ],
-        staticClass: "browser-default custom-select",
-        on: {
-          change: [
-            function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.year = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-            function($event) {
-              return _vm.getMakers()
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.year,
+                expression: "year"
+              }
+            ],
+            staticClass: "browser-default custom-select",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.year = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getMakers()
+                }
+              ]
             }
-          ]
-        }
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "0" } }, [
-          _vm._v("Select Year")
-        ]),
+          },
+          [
+            _c("option", { attrs: { selected: "", value: "0" } }, [
+              _vm._v("Select Year")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.years, function(year) {
+              return _c("option", { domProps: { value: year.Year } }, [
+                _vm._v(_vm._s(year.Year))
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h2", {}, [_vm._v("Make")]),
         _vm._v(" "),
-        _vm._l(_vm.years, function(year) {
-          return _c("option", { domProps: { value: year.Year } }, [
-            _vm._v(_vm._s(year.Year))
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.maker,
-            expression: "maker"
-          }
-        ],
-        staticClass: "browser-default custom-select",
-        on: {
-          change: [
-            function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.maker = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-            function($event) {
-              return _vm.getModels()
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.maker,
+                expression: "maker"
+              }
+            ],
+            staticClass: "browser-default custom-select",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.maker = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getModels()
+                }
+              ]
             }
-          ]
-        }
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "0" } }, [
-          _vm._v("Select Maker")
-        ]),
+          },
+          [
+            _c("option", { attrs: { selected: "", value: "0" } }, [
+              _vm._v("Select Maker")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.makers, function(maker) {
+              return _c("option", { domProps: { value: maker.Make } }, [
+                _vm._v(_vm._s(maker.Make))
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h2", {}, [_vm._v("Model")]),
         _vm._v(" "),
-        _vm._l(_vm.makers, function(maker) {
-          return _c("option", { domProps: { value: maker.Make } }, [
-            _vm._v(_vm._s(maker.Make))
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.model,
-            expression: "model"
-          }
-        ],
-        staticClass: "browser-default custom-select",
-        on: {
-          change: [
-            function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.model = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-            function($event) {
-              return _vm.getTrims()
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.model,
+                expression: "model"
+              }
+            ],
+            staticClass: "browser-default custom-select",
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.model = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getTrims()
+                }
+              ]
             }
-          ]
-        }
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "0" } }, [
-          _vm._v("Select Model")
-        ]),
+          },
+          [
+            _c("option", { attrs: { selected: "", value: "0" } }, [
+              _vm._v("Select Model")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.models, function(model) {
+              return _c("option", { domProps: { value: model.Model } }, [
+                _vm._v(_vm._s(model.Model))
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h2", {}, [_vm._v("Trim")]),
         _vm._v(" "),
-        _vm._l(_vm.models, function(model) {
-          return _c("option", { domProps: { value: model.Model } }, [
-            _vm._v(_vm._s(model.Model))
-          ])
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "select",
-      {
-        directives: [
+        _c(
+          "select",
           {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.trim,
-            expression: "trim"
-          }
-        ],
-        staticClass: "browser-default custom-select",
-        on: {
-          change: function($event) {
-            var $$selectedVal = Array.prototype.filter
-              .call($event.target.options, function(o) {
-                return o.selected
-              })
-              .map(function(o) {
-                var val = "_value" in o ? o._value : o.value
-                return val
-              })
-            _vm.trim = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-          }
-        }
-      },
-      [
-        _c("option", { attrs: { selected: "", value: "0" } }, [
-          _vm._v("Select Trim")
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.trims, function(trim) {
-          return _c("option", { domProps: { value: trim.Trim } }, [
-            _vm._v(_vm._s(trim.Trim))
-          ])
-        })
-      ],
-      2
-    )
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.trim,
+                expression: "trim"
+              }
+            ],
+            staticClass: "browser-default custom-select",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.trim = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { selected: "", value: "0" } }, [
+              _vm._v("Select Trim")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.trims, function(trim) {
+              return _c("option", { domProps: { value: trim.Trim } }, [
+                _vm._v(_vm._s(trim.Trim))
+              ])
+            })
+          ],
+          2
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

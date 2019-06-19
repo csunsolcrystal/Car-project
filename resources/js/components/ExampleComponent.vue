@@ -1,21 +1,35 @@
 <template>
 <div class="form-group">
+<div class="row">
+  <div class="col-md-3">
+  <h2 class="">Year</h2>
   <select class="browser-default custom-select" v-model="year" @change="getMakers()">
     <option selected value ="0">Select Year</option>
     <option v-for="year in years" :value='year.Year'>{{ year.Year }}</option>
   </select>
+  </div>
+  <div class="col-md-3">
+  <h2 class="">Make</h2>
   <select class="browser-default custom-select" v-model="maker" @change="getModels()">
     <option selected value ="0">Select Maker</option>
     <option v-for="maker in makers" :value='maker.Make'>{{ maker.Make }}</option>
   </select>
+  </div>
+  <div class="col-md-3">
+  <h2 class="">Model</h2>
   <select class="browser-default custom-select" v-model="model" @change="getTrims()">
     <option selected value ="0">Select Model</option>
     <option v-for="model in models" :value='model.Model'>{{ model.Model }}</option>
   </select>
+  </div>
+  <div class="col-md-3">
+  <h2 class="">Trim</h2>
   <select class="browser-default custom-select" v-model="trim">
   <option selected value ="0">Select Trim</option>
     <option v-for="trim in trims" :value='trim.Trim'>{{ trim.Trim }}</option>
   </select>
+  </div>
+  </div>
   </div>
 </template>
 <script type="text/javascript">

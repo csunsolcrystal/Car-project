@@ -47,42 +47,6 @@
     <div class='container' id="app">
       <example-component :initial-years="{{ json_encode($years) }}" ></example-component>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h2 class="">Year</h2><select class="browser-default custom-select">
-            <option selected="" value="Year">Choose Year</option>
-			@foreach ($years as $year)
-			 <option value="{{ $year['Year'] }}">{{ $year['Year'] }}</option>
-			@endforeach
-          </select>
-        </div>
-        <div class="col-md-3">
-          <h2 class="">Maker</h2><select class="browser-default custom-select">
-            <option selected="" value="Year">Choose Maker</option>
-         	@foreach ($makers as $maker)
-			 <option value="{{ $maker['Make'] }}">{{ $maker['Make'] }}</option>
-			@endforeach
-          </select>
-        </div>
-        <div class="col-md-3">
-          <h2 class="">Model</h2><select class="browser-default custom-select">
-            <option selected="" value="Year">Choose Model</option>
-            @foreach ($models as $model)
-			 <option value="{{ $model['Model'] }}">{{ $model['Model'] }}</option>
-			@endforeach
-          </select>
-        </div>
-        <div class="col-md-3">
-          <h2 class="">Trim</h2><select class="browser-default custom-select">
-			   <option selected="" value="Year">Choose Trim</option>
-           	@foreach ($trims as $trim)
-			 <option value="{{ $trim['Trim'] }}">{{ $trim['Trim'] }}</option>
-			@endforeach
-          </select>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="py-5">
     <div class="container">
