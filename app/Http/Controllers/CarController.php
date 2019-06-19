@@ -24,4 +24,8 @@ class CarController extends Controller
 			'trims' => $trims,
         ]);
 	}
+	public function getYears(Request $request) {
+		$years = \DB::table('Cars')->distinct()->select('Year')->orderBy('Year', 'ASC')->get();
+        return response()->json($years);
+	}
 }

@@ -1704,7 +1704,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['years']
+  props: ['initialYears'],
+  data: function data() {
+    return {
+      years: _.cloneDeep(this.initialYears),
+      feedback: ''
+    };
+  },
+  methods: {
+    getYears: function getYears() {
+      var _this = this;
+
+      axios.get('/api/years/', {
+        years: this.years
+      }).then(function (res) {
+        _this.years = res.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37000,7 +37017,14 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "select",
-    { staticClass: "browser-default custom-select" },
+    {
+      staticClass: "browser-default custom-select",
+      on: {
+        change: function($event) {
+          return _vm.getYears()
+        }
+      }
+    },
     [
       _c("option", { attrs: { selected: "" } }, [_vm._v("Select Year")]),
       _vm._v(" "),

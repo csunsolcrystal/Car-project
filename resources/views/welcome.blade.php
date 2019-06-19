@@ -45,7 +45,7 @@
   </div>
   <div class="align-items-center text-center mb-5">
     <div class='container' id="app">
-      <example-component :years="{{ json_encode($years) }}"></example-component>
+      <example-component :initial-years="{{ json_encode($years) }}"></example-component>
     </div>
     <div class="container">
       <div class="row">
