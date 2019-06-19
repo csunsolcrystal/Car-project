@@ -1722,13 +1722,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       years: _.cloneDeep(this.initialYears),
-      year: '',
+      year: 0,
       makers: '',
-      maker: '',
+      maker: 0,
       models: '',
-      model: '',
+      model: 0,
       trims: '',
-      trim: ''
+      trim: 0
     };
   },
   methods: {
@@ -1739,7 +1739,11 @@ __webpack_require__.r(__webpack_exports__);
         years: this.years
       }).then(function (res) {
         _this.years = res.data;
-        _this.makers = 0;
+        _this.makers = '';
+        _this.maker = 0;
+        _this.models = '';
+        _this.model = 0;
+        _this.trim = 0;
       });
     },
     getMakers: function getMakers() {
@@ -1749,6 +1753,11 @@ __webpack_require__.r(__webpack_exports__);
         makers: this.makers
       }).then(function (res) {
         _this2.makers = res.data;
+        _this2.maker = 0;
+        _this2.models = '';
+        _this2.model = 0;
+        _this2.trims = '';
+        _this2.trim = 0;
       });
     },
     getModels: function getModels() {
@@ -1758,6 +1767,9 @@ __webpack_require__.r(__webpack_exports__);
         models: this.models
       }).then(function (res) {
         _this3.models = res.data;
+        _this3.model = 0;
+        _this3.trims = '';
+        _this3.trim = 0;
       });
     },
     getTrims: function getTrims() {
@@ -37098,7 +37110,9 @@ var render = function() {
         }
       },
       [
-        _c("option", { attrs: { selected: "" } }, [_vm._v("Select Year")]),
+        _c("option", { attrs: { selected: "", value: "0" } }, [
+          _vm._v("Select Year")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.years, function(year) {
           return _c("option", { domProps: { value: year.Year } }, [
@@ -37143,7 +37157,9 @@ var render = function() {
         }
       },
       [
-        _c("option", { attrs: { selected: "" } }, [_vm._v("Select Maker")]),
+        _c("option", { attrs: { selected: "", value: "0" } }, [
+          _vm._v("Select Maker")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.makers, function(maker) {
           return _c("option", { domProps: { value: maker.Make } }, [
@@ -37188,7 +37204,9 @@ var render = function() {
         }
       },
       [
-        _c("option", { attrs: { selected: "" } }, [_vm._v("Select Model")]),
+        _c("option", { attrs: { selected: "", value: "0" } }, [
+          _vm._v("Select Model")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.models, function(model) {
           return _c("option", { domProps: { value: model.Model } }, [
@@ -37212,28 +37230,23 @@ var render = function() {
         ],
         staticClass: "browser-default custom-select",
         on: {
-          change: [
-            function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.trim = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            },
-            function($event) {
-              return _vm.getTrims()
-            }
-          ]
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.trim = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+          }
         }
       },
       [
-        _c("option", { attrs: { selected: "" } }, [_vm._v("Select Trim")]),
+        _c("option", { attrs: { selected: "", value: "0" } }, [
+          _vm._v("Select Trim")
+        ]),
         _vm._v(" "),
         _vm._l(_vm.trims, function(trim) {
           return _c("option", { domProps: { value: trim.Trim } }, [

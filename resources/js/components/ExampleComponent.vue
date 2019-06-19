@@ -1,19 +1,19 @@
 <template>
 <div class="form-group">
   <select class="browser-default custom-select" v-model="year" @change="getMakers()">
-    <option selected>Select Year</option>
+    <option selected value ="0">Select Year</option>
     <option v-for="year in years" :value='year.Year'>{{ year.Year }}</option>
   </select>
   <select class="browser-default custom-select" v-model="maker" @change="getModels()">
-    <option selected>Select Maker</option>
+    <option selected value ="0">Select Maker</option>
     <option v-for="maker in makers" :value='maker.Make'>{{ maker.Make }}</option>
   </select>
   <select class="browser-default custom-select" v-model="model" @change="getTrims()">
-    <option selected>Select Model</option>
+    <option selected value ="0">Select Model</option>
     <option v-for="model in models" :value='model.Model'>{{ model.Model }}</option>
   </select>
-  <select class="browser-default custom-select" v-model="trim" @change="getTrims()">
-    <option selected>Select Trim</option>
+  <select class="browser-default custom-select" v-model="trim">
+  <option selected value ="0">Select Trim</option>
     <option v-for="trim in trims" :value='trim.Trim'>{{ trim.Trim }}</option>
   </select>
   </div>
@@ -24,13 +24,13 @@ export default {
     data() {
         return {
             years: _.cloneDeep(this.initialYears),
-            year: '',
+            year: 0,
             makers: '',
-            maker: '',
+            maker: 0,
             models: '',
-            model: '',
+            model: 0,
             trims: '',
-            trim: '',
+            trim: 0,
         };
     },
     methods: {
@@ -40,7 +40,11 @@ export default {
             })
             .then((res) => {
                     this.years = res.data;
-                    this. makers = 0;
+                    this.makers = '';
+                    this.maker = 0;
+                    this.models = '';
+                    this.model = 0;
+                    this.trim = 0;
             });
         },
         getMakers() {
@@ -49,6 +53,11 @@ export default {
             })
             .then((res) => {
                     this.makers = res.data;
+                    this.maker = 0;
+                    this.models = '';
+                    this.model = 0;
+                    this.trims = '';
+                    this.trim = 0;
             });
         },
         getModels() {
@@ -57,6 +66,9 @@ export default {
             })
             .then((res) => {
                     this.models = res.data;
+                    this.model = 0;
+                    this.trims = '';
+                    this.trim = 0;
             });
         },
         getTrims() {
