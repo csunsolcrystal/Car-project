@@ -1766,6 +1766,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['initialYears'],
   data: function data() {
@@ -1778,7 +1787,9 @@ __webpack_require__.r(__webpack_exports__);
       model: 0,
       trims: '',
       trim: 0,
-      vinyls: ''
+      vinyls: '',
+      searchquery: '',
+      data_results: []
     };
   },
   methods: {
@@ -1843,6 +1854,30 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this5.vinyls = res.data;
       });
+    },
+    autoComplete: function autoComplete() {
+      var _this6 = this;
+
+      this.data_results = [];
+
+      if (this.searchquery.length > 2) {
+        axios.get('/autocomplete/search', {
+          params: {
+            searchquery: this.searchquery
+          }
+        }).then(function (response) {
+          console.log(response);
+          _this6.data_results = response.data;
+        });
+      }
+    },
+    fillCarData: function fillCarData(year, make, model, trim) {
+      this.year = year;
+      this.maker = make;
+      this.model = model;
+      this.trim = trim;
+      this.getVinyl();
+      this.searchquery = '';
     }
   }
 });
@@ -37139,6 +37174,72 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-group" }, [
+    _c("div", [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchquery,
+            expression: "searchquery"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text", placeholder: "what are you looking for?" },
+        domProps: { value: _vm.searchquery },
+        on: {
+          keyup: _vm.autoComplete,
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchquery = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.data_results.length && _vm.searchquery != ""
+        ? _c("div", { staticClass: "panel-footer" }, [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.data_results, function(result) {
+                return _c(
+                  "li",
+                  {
+                    staticClass: "list-group-item",
+                    on: {
+                      click: function($event) {
+                        return _vm.fillCarData(
+                          result.Year,
+                          result.Make,
+                          result.Model,
+                          result.Trim
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("a", { attrs: { href: "#" } }, [
+                      _vm._v(
+                        _vm._s(result.Year) +
+                          " " +
+                          _vm._s(result.Make) +
+                          " " +
+                          _vm._s(result.Model) +
+                          " " +
+                          _vm._s(result.Trim)
+                      )
+                    ])
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-3" }, [
         _c("h2", {}, [_vm._v("Year")]),

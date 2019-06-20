@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'CarController@index');
+Route::get('autocomplete/search', 'CarController@autocompleteSearch');

@@ -1,5 +1,14 @@
 <template>
 <div class="form-group">
+  <div>
+    <input type="text" placeholder="what are you looking for?" v-model="searchquery" v-on:keyup="autoComplete" class="form-control">
+    <div class="panel-footer" v-if="data_results.length && searchquery != ''">
+      <ul class="list-group">
+      <li class="list-group-item" v-for="result in data_results" @click="fillCarData(result.Year, result.Make, result.Model, result.Trim)"><a href="#">{{ result.Year }} {{ result.Make }} {{result.Model }} {{ result.Trim }}</a>
+  </li>
+</ul>
+</div>
+</div>
 <div class="row">
   <div class="col-md-3">
   <h2 class="">Year</h2>
@@ -81,6 +90,8 @@ export default {
             trims: '',
             trim: 0,
             vinyls: '',
+            searchquery: '',
+            data_results: [],
         };
     },
     methods: {
@@ -141,6 +152,23 @@ export default {
                     this.vinyls = res.data;
             });
         },
+        autoComplete(){
+        this.data_results = [];
+        if(this.searchquery.length > 2){
+         axios.get('/autocomplete/search',{params: {searchquery: this.searchquery}}).then(response => {
+            console.log(response);
+          this.data_results = response.data;
+         });
+        }
+      },
+      fillCarData(year, make, model, trim) {
+        this.year = year;
+        this.maker = make;
+        this.model = model;
+        this.trim = trim;
+        this.getVinyl();
+        this.searchquery = '';
+      }
     }
 }
 </script>
