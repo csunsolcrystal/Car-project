@@ -1731,6 +1731,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['initialYears'],
   data: function data() {
@@ -1742,7 +1777,8 @@ __webpack_require__.r(__webpack_exports__);
       models: '',
       model: 0,
       trims: '',
-      trim: 0
+      trim: 0,
+      vinyls: ''
     };
   },
   methods: {
@@ -1758,6 +1794,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.models = '';
         _this.model = 0;
         _this.trim = 0;
+        _this.vinyls = '';
       });
     },
     getMakers: function getMakers() {
@@ -1772,6 +1809,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.model = 0;
         _this2.trims = '';
         _this2.trim = 0;
+        _this2.vinyls = '';
       });
     },
     getModels: function getModels() {
@@ -1784,6 +1822,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.model = 0;
         _this3.trims = '';
         _this3.trim = 0;
+        _this3.vinyls = '';
       });
     },
     getTrims: function getTrims() {
@@ -1793,6 +1832,16 @@ __webpack_require__.r(__webpack_exports__);
         trims: this.trims
       }).then(function (res) {
         _this4.trims = res.data;
+        _this4.vinyls = '';
+      });
+    },
+    getVinyl: function getVinyl() {
+      var _this5 = this;
+
+      axios.get('/api/makers/' + this.year + '/' + this.maker + '/' + this.model + '/' + this.trim, {
+        vinyls: this.vinyls
+      }).then(function (res) {
+        _this5.vinyls = res.data;
       });
     }
   }
@@ -37260,19 +37309,24 @@ var render = function() {
             ],
             staticClass: "browser-default custom-select",
             on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.trim = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.trim = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  return _vm.getVinyl()
+                }
+              ]
             }
           },
           [
@@ -37289,10 +37343,81 @@ var render = function() {
           2
         )
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.vinyls != ""
+      ? _c("div", { staticClass: "container mt-5" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c("table", { staticClass: "table table-bordered " }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Novice")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.vinyls[0]) + " ft")])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c("th", [_vm._v("Intermediate")]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.vinyls[1]) + " ft")])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
+                      _c(
+                        "th",
+                        { attrs: { scope: "row", contenteditable: "true" } },
+                        [_vm._v("Professional")]
+                      ),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(_vm.vinyls[2]) + " ft")])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h2", { staticClass: "text-center pb-2" }, [
+          _vm._v("Vinyl Wrap "),
+          _c("small", { staticClass: "text-muted" }, [
+            _c("br"),
+            _vm._v(
+              "The length of the vinyl wrap needed is an approximation based on skilled level"
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Tier List (Skill level)")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Approximate Length (in Feet)")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

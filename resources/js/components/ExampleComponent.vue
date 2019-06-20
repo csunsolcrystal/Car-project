@@ -24,11 +24,46 @@
   </div>
   <div class="col-md-3">
   <h2 class="">Trim</h2>
-  <select class="browser-default custom-select" v-model="trim">
+  <select class="browser-default custom-select" v-model="trim" @change="getVinyl()">
   <option selected value ="0">Select Trim</option>
     <option v-for="trim in trims" :value='trim.Trim'>{{ trim.Trim }}</option>
   </select>
   </div>
+  </div>
+  <div class="container mt-5" v-if="vinyls != ''">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center pb-2">Vinyl Wrap&nbsp;<small class="text-muted"><br>The length of the vinyl wrap needed is an approximation based on skilled level</small></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered ">
+            <thead class="thead-dark">
+              <tr>
+                <th>Tier List (Skill level)</th>
+                <th>Approximate Length (in Feet)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Novice</th>
+                <td>{{ vinyls[0] }} ft</td>
+              </tr>
+              <tr>
+                <th>Intermediate</th>
+                <td>{{ vinyls[1] }} ft</td>
+              </tr>
+              <tr>
+                <th scope="row" contenteditable="true">Professional</th>
+                <td>{{ vinyls[2] }} ft</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
   </div>
 </template>
@@ -45,6 +80,7 @@ export default {
             model: 0,
             trims: '',
             trim: 0,
+            vinyls: '',
         };
     },
     methods: {
@@ -59,6 +95,7 @@ export default {
                     this.models = '';
                     this.model = 0;
                     this.trim = 0;
+                    this.vinyls = '';
             });
         },
         getMakers() {
@@ -72,6 +109,7 @@ export default {
                     this.model = 0;
                     this.trims = '';
                     this.trim = 0;
+                    this.vinyls = '';
             });
         },
         getModels() {
@@ -83,6 +121,7 @@ export default {
                     this.model = 0;
                     this.trims = '';
                     this.trim = 0;
+                    this.vinyls = '';
             });
         },
         getTrims() {
@@ -91,6 +130,15 @@ export default {
             })
             .then((res) => {
                     this.trims = res.data;
+                    this.vinyls ='';
+            });
+        },
+        getVinyl() {
+            axios.get('/api/makers/' + this.year + '/'+ this.maker + '/'+ this.model +'/'+ this.trim, {
+                vinyls: this.vinyls
+            })
+            .then((res) => {
+                    this.vinyls = res.data;
             });
         },
     }

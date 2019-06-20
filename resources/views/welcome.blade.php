@@ -48,43 +48,6 @@
       <example-component :initial-years="{{ json_encode($years) }}" ></example-component>
     </div>
   </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center pb-2">Vinyl Wrap&nbsp;<small class="text-muted"><br>The length of the vinyl wrap needed is an approximation based on skilled level</small></h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="table-responsive">
-            <table class="table table-bordered ">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Tier List (Skill level)</th>
-                  <th>Approximate Length</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>Novice</th>
-                  <td>10"</td>
-                </tr>
-                <tr>
-                  <th>Intermediate</th>
-                  <td>8"</td>
-                </tr>
-                <tr>
-                  <th scope="row" contenteditable="true">Professional</th>
-                  <td>5"</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="py-3">
     <div class="container">
       <div class="row">

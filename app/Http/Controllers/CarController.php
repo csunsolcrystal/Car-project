@@ -40,9 +40,20 @@ class CarController extends Controller
 		$models = \DB::table('Cars')->distinct()->select('Trim')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->orderBy('Trim', 'ASC')->get();
         return response()->json($models);
 	}
+	public function calculateVinyl($request, $request2, $request3, $request4) {
+		// get length of car
+		$length = \DB::table('Cars')->distinct()->select('Length_in')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->where('Trim', $request4)->first();
+		$length = $length->Length_in;
+		$vinyl = [];
+		$basic = 15;
+		$medium = 10;
+		$expert = 5;
 
-	//TODO: Dont know if i need a seperate function for it
-	public function findCar() {
+		// formulas
+		$vinyl[] = ceil((($length * 3) / 12) + $basic);
+		$vinyl[] = ceil((($length * 3) / 12) + $medium);
+		$vinyl[] = ceil((($length * 3) / 12) + $expert);
 
+		return response()->json($vinyl);
 	}
 }
