@@ -8,7 +8,7 @@
         <div class="input-group">
           <input type="text" class="form-control d-inline-flex justify-content-center" placeholder="Search" style="width: 350px;" id="inlineFormInputGroup" v-model="searchquery" v-on:keyup="autoComplete">
           <div class="input-group-append"><button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button></div>
-          <div class="panel-footer" v-if="data_results.length && searchquery != ''">
+          <div class="panel-footer" v-if="this.data_results.length && this.searchquery != ''">
             <ul class="list-group">
             <li class="list-group-item" v-for="result in data_results" @click="fillCarData(result.Year, result.Make, result.Model, result.Trim)"><a href="#">{{ result.Year }} {{ result.Make }} {{result.Model }} {{ result.Trim }}</a>
         </li>
@@ -53,6 +53,7 @@ export default {
     this.$root.maker = make;
     this.$root.model = model;
     this.$root.trim = trim;
+    this.$root.vinyls = '';
     this.getVinyl();
     this.searchquery = '';
     }

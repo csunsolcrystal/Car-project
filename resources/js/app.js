@@ -41,7 +41,5 @@ const app = new Vue({
       trims: '',
       trim: 0,
       vinyls: '',
-      searchquery: '',
-      data_results: [],
     }
 });

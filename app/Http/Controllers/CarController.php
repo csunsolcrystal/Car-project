@@ -28,8 +28,8 @@ class CarController extends Controller
         return response()->json($models);
 	}
 	public function getTrims($request, $request2, $request3) {
-		$models = \DB::table('Cars')->distinct()->select('Trim')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->orderBy('Trim', 'ASC')->get();
-        return response()->json($models);
+		$trims = \DB::table('Cars')->distinct()->select('Trim')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->orderBy('Trim', 'ASC')->get();
+        return response()->json($trims);
 	}
 	public function calculateVinyl($request, $request2, $request3, $request4) {
 		// get length of car

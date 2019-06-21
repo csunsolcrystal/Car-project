@@ -141,6 +141,7 @@ export default {
             })
             .then((res) => {
                     this.$root.vinyls = res.data;
+                    vinyls: res.data;
             });
         },
     }
