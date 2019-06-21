@@ -50,7 +50,6 @@ export default {
   fillCarData(year, make, model, trim) {
     this.$root.year = year;
     this.$root.maker = make;
-    this.$root.maker = make;
     this.$root.model = model;
     this.$root.trim = trim;
     this.$root.vinyls = '';

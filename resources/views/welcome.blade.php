@@ -26,7 +26,7 @@
   </nav>
   <div class="py-5 text-center" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
     <div class="container">
-      <search-component></search-component>
+      <search-component :initial-years="{{ json_encode($years) }}"></search-component>
     </div>
   </div>
   <div class="py-5">

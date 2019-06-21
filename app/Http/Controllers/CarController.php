@@ -49,7 +49,7 @@ class CarController extends Controller
 	}
 	public function autocompleteSearch(Request $request) {
 			 $searchquery = $request->searchquery;
-			 $data = \DB::table('Cars')->Select('Year', 'Make', 'Model', 'Trim')->where('Model','like','%'.$searchquery.'%')->get();
+			 $data = Car::search($searchquery)->limit(5)->get();
 
 			 return response()->json($data);
 	 }
