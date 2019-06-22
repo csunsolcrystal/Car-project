@@ -10,7 +10,7 @@
           <div class="input-group-append"><button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button></div>
           <div class="panel-footer" v-if="this.data_results.length && this.searchquery != ''">
             <ul class="list-group">
-            <li class="list-group-item" v-for="result in data_results" @click="fillCarData(result.Year, result.Make, result.Model, result.Trim)"><a href="#">{{ result.Year }} {{ result.Make }} {{result.Model }} {{ result.Trim }}</a>
+            <li class="list-group-item" v-for="result in data_results" @click="fillCarData(result.Year, result.Make, result.Model, result.Trim)"><a href="#">{{ result.Year }} {{ result.Make }} {{result.Model }}<br> {{ result.Trim }}</a>
         </li>
       </ul>
       </div>
@@ -23,6 +23,7 @@
 
 <script>
 export default {
+  props: ['initialYears'],
   data() {
       return {
         searchquery: '',
