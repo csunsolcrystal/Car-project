@@ -22,11 +22,19 @@
     <div class="container"> <a class="navbar-brand" href="#">
         <i class="fa d-inline fa-lg fa-circle"></i>
         <b> Carwraps</b>
-      </a> </div>
+      </a>
+    </div>
   </nav>
   <div class="py-5 text-center" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
     <div class="container">
-      <search-component :initial-years="{{ json_encode($years) }}"></search-component>
+      @php
+      $totalyears = [];
+      for($i = $years['min_year'], $size = $years['max_year']; $i <= $size; $i++) {
+        $i = intval($i);
+        $totalyears[] = $i;
+      }
+      @endphp
+      <search-component :initial-years="{{ json_encode($totalyears, true) }}"></search-component>
     </div>
   </div>
   <div class="py-5">
@@ -40,9 +48,14 @@
   </div>
   <div class="align-items-center text-center mb-5">
     <div class='container'>
-      <example-component :initial-years="{{ json_encode($years) }}" ></example-component>
+      <example-component :initial-years="{{ json_encode($totalyears) }}" ></example-component>
     </div>
   </div>
+  <div class="py-2 text-center" style="height: 25%;" role="alert">
+    <h3 class="py-3 text-center">Affiliates</h3>
+    <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" target="_blank" src="https://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=wrapcalc-20&marketplace=amazon&region=US&placement=B07GRMH9G6&asins=B07GRMH9G6&linkId=a3012b8e7e9b7312d6f6af4b3fb31621&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
+  </iframe>
+</div>
   <div class="py-3">
     <div class="container">
       <div class="row">

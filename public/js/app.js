@@ -1840,7 +1840,7 @@ __webpack_require__.r(__webpack_exports__);
     getVinyl: function getVinyl() {
       var _this5 = this;
 
-      axios.get('/api/makers/' + this.$root.year + '/' + this.$root.maker + '/' + this.$root.model + '/' + this.$root.trim, {
+      axios.get('/api/model/' + this.$root.trim, {
         vinyls: this.$root.vinyls
       }).then(function (res) {
         _this5.$root.vinyls = res.data;
@@ -37268,8 +37268,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _vm._l(_vm.years, function(year) {
-              return _c("option", { domProps: { value: year.Year } }, [
-                _vm._v(_vm._s(year.Year))
+              return _c("option", { domProps: { value: year } }, [
+                _vm._v(_vm._s(year))
               ])
             })
           ],
@@ -37321,8 +37321,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _vm._l(this.$root.makers, function(maker) {
-              return _c("option", { domProps: { value: maker.Make } }, [
-                _vm._v(_vm._s(maker.Make))
+              return _c("option", { domProps: { value: maker.make_id } }, [
+                _vm._v(_vm._s(maker.make_display))
               ])
             })
           ],
@@ -37374,8 +37374,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _vm._l(this.$root.models, function(model) {
-              return _c("option", { domProps: { value: model.Model } }, [
-                _vm._v(_vm._s(model.Model))
+              return _c("option", { domProps: { value: model.model_name } }, [
+                _vm._v(_vm._s(model.model_name))
               ])
             })
           ],
@@ -37427,8 +37427,8 @@ var render = function() {
             ]),
             _vm._v(" "),
             _vm._l(this.$root.trims, function(trim) {
-              return _c("option", { domProps: { value: trim.Trim } }, [
-                _vm._v(_vm._s(trim.Trim))
+              return _c("option", { domProps: { value: trim.model_id } }, [
+                _vm._v(_vm._s(trim.model_trim) + " " + _vm._s(trim.model_body))
               ])
             })
           ],

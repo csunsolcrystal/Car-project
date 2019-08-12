@@ -5,28 +5,28 @@
   <h2 class="">Year</h2>
   <select class="browser-default custom-select" v-model="$root.year" @change="getMakers()">
     <option selected value ="0">Select Year</option>
-    <option v-for="year in years" :value='year.Year'>{{ year.Year }}</option>
+    <option v-for="year in years" :value='year'>{{ year }}</option>
   </select>
   </div>
   <div class="col-md-3">
   <h2 class="">Make</h2>
   <select class="browser-default custom-select" v-model="$root.maker" @change="getModels()">
     <option selected value ="0">Select Maker</option>
-    <option v-for="maker in this.$root.makers" :value='maker.Make'>{{ maker.Make }}</option>
+    <option v-for="maker in this.$root.makers" :value='maker.make_id'>{{ maker.make_display }}</option>
   </select>
   </div>
   <div class="col-md-3">
   <h2 class="">Model</h2>
   <select class="browser-default custom-select" v-model="$root.model" @change="getTrims()">
     <option selected value ="0">Select Model</option>
-    <option v-for="model in this.$root.models" :value='model.Model'>{{ model.Model }}</option>
+    <option v-for="model in this.$root.models" :value='model.model_name'>{{ model.model_name }}</option>
   </select>
   </div>
   <div class="col-md-3">
   <h2 class="">Trim</h2>
   <select class="browser-default custom-select" v-model="$root.trim" @change="getVinyl()">
   <option selected value ="0">Select Trim</option>
-    <option v-for="trim in this.$root.trims" :value='trim.Trim'>{{ trim.Trim }}</option>
+    <option v-for="trim in this.$root.trims" :value='trim.model_id'>{{ trim.model_trim }} {{ trim.model_body }}</option>
   </select>
   </div>
   </div>
@@ -136,7 +136,7 @@ export default {
             });
         },
         getVinyl() {
-            axios.get('/api/makers/' + this.$root.year + '/'+ this.$root.maker + '/'+ this.$root.model +'/'+ this.$root.trim, {
+            axios.get('/api/model/'+ this.$root.trim, {
                 vinyls: this.$root.vinyls
             })
             .then((res) => {
