@@ -36,9 +36,9 @@ class CarController extends Controller
 		$length = \DB::table('Cars')->distinct()->select('Length_in')->where('Year', $request)->where('Make', $request2)->where('Model', $request3)->where('Trim', $request4)->first();
 		$length = $length->Length_in;
 		$vinyl = [];
-		$basic = 20;
-		$medium = 15;
-		$expert = 10;
+		$basic = 30;
+		$medium = 20;
+		$expert = 15;
 
 		// formulas
 		$vinyl[] = ceil((($length * 3) / 12) + $basic);
